@@ -27,7 +27,7 @@ class RegisterController extends Controller
             'password' => Hash::make($req->password),
         ]);
 
-
+        auth()->attempt($req->only('user_id','password'));
 
     }
 }

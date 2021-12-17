@@ -28,7 +28,7 @@ Ext.define('QMS.Application', {
         // If TutorialLoggedIn isn't true, we display the login window,
         // otherwise, we display the main view
         Ext.create({
-            xtype: loggedIn ? 'app-main' : 'login'
+            xtype: loggedIn ? 'app-main' : 'form-login'
         });
 
     },

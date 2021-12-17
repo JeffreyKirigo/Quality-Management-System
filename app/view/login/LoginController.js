@@ -7,19 +7,12 @@ Ext.define('QMS.view.login.LoginController', {
         // Set the localStorage value to true
         localStorage.setItem("TutorialLoggedIn", true);
         if (localStorage) {
-            Ext.Ajax.request({
-                url: 'http://127.0.0.1:8000/calltoback',
-                success: function(response) {
-                    form.destroy();
-                    Ext.create({
-                        xtype: 'app-main',
-                    });
-                    console.log('success');
-                },
-                failure: function() {
-                    alert("fail");
-                },
+
+            form.destroy();
+            Ext.create({
+                xtype: 'app-main',
             });
+            console.log('success');
 
         }
         // Remove Login Window
