@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('calltoback',[TestController::class, 'callMe']);
+Route::post('register',[RegisterController::class, 'store']);
 
