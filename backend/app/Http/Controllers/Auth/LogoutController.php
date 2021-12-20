@@ -10,8 +10,10 @@ class LogoutController extends Controller
     //
     public function store(){
         auth()->logout();
-
-        return 'logged out successfully';
-
+        $res=array(
+            'success'=>true,
+            'message'=>'Loggin Failed, Invalid details'
+        );
+        return response()->json([$res]);
     }
 }

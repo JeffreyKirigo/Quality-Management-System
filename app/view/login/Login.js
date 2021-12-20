@@ -1,43 +1,52 @@
-    Ext.define('QMS.view.login..loginForm', {
-        extend: 'Ext.window.Window',
+    Ext.define('QMS.view.login.Login', {
+        extend: 'Ext.form.Panel',
         xtype: 'form-login',
 
-        requires: [
-            'QMS.view.login.LoginController',
-            'Ext.form.Panel',
-        ],
+
+        controller: 'login',
 
         title: 'Login',
         frame: true,
-        width: 320,
+        width: 350,
         bodyPadding: 10,
         floating: true,
+        autoShow: true,
+        position: 'center',
+        jsonSubmit: true,
+
+
 
         defaultType: 'textfield',
 
         items: [{
             allowBlank: false,
             fieldLabel: 'User ID',
-            name: 'user',
+            name: 'user_id',
             emptyText: 'user id',
             msgTarget: 'under'
         }, {
             allowBlank: false,
             fieldLabel: 'Password',
-            name: 'pass',
+            name: 'password',
             emptyText: 'password',
             inputType: 'password'
         }, {
             xtype: 'checkbox',
             fieldLabel: 'Remember me',
-            name: 'remember'
+            name: 'remember_token'
         }],
 
         buttons: [{
                 text: 'login',
-                handler: 'onLoginClick'
+                formBind: true,
+                listeners: {
+                    click: 'onLoginClick'
+                },
             },
-            { text: 'Login' }
+            {
+                text: 'Register',
+                handler: 'onRegisterClick'
+            }
         ],
 
         defaults: {

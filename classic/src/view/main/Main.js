@@ -42,7 +42,7 @@ Ext.define('QMS.view.main.Main', {
         items: [{
             xtype: 'button',
             text: 'Logout',
-            margin: '10 0',
+            margin: '10',
             handler: 'onLogoutButton'
         }]
     },

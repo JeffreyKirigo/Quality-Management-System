@@ -26,7 +26,26 @@ Ext.define('QMS.view.main.MainController', {
 
         // Add the Login Window
         Ext.create({
-            xtype: 'login'
+            xtype: 'form-login'
+        });
+
+        Ext.Ajax.request({
+            url: 'http://127.0.0.1:8000/logout',
+
+            success: function(response) {
+                Ext.Msg.alert("Status", "Logged out");
+                // Set the localStorage value to true
+                localStorage.removeItem("TutorialLoggedIn");
+                // Remove Login Window
+                this.getView().destroy();
+                // Add the main view to the viewport
+                Ext.create({
+                    xtype: 'app-main',
+                });
+            },
+            failure: function(response) {
+                Ext.Msg.alert("Status", "Ops! Something went wrong!");
+            }
         });
     }
 });

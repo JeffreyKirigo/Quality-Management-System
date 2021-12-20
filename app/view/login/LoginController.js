@@ -3,23 +3,41 @@ Ext.define('QMS.view.login.LoginController', {
     alias: 'controller.login',
 
     onLoginClick: function(btn) {
-        var form = btn.up('login');
-        // Set the localStorage value to true
-        localStorage.setItem("TutorialLoggedIn", true);
-        if (localStorage) {
+        var form = btn.up('form-login');
+        form.submit({
 
-            form.destroy();
-            Ext.create({
-                xtype: 'app-main',
-            });
-            console.log('success');
+            url: "http://127.0.0.1:8000/login",
+            success: function(frm, action) {
 
-        }
-        // Remove Login Window
+                Ext.Msg.alert("Status", "Logged in successfully.");
 
-        // Add the main view to the viewport
+                // Set the localStorage value to true
+                localStorage.setItem("TutorialLoggedIn", true);
 
+                // Remove Login Window
+                form.destroy();
 
+                // Add the main view to the viewport
+                Ext.create({
+                    xtype: 'app-main',
+                });
+            },
+            failure: function() {
+                // alert('Failure');
+                Ext.Msg.alert("Status", "Loggin Failed, Invalid details");
+            },
+        });
     },
+    onRegisterClick: function() {
+        //Destroy login form
+        this.getView().destroy();
+
+        //create register form
+        Ext.create({
+            xtype: 'form-register',
+        });
+
+
+    }
 
 });

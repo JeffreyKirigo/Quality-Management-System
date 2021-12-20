@@ -2,12 +2,16 @@ Ext.define('QMS.view.registration.RegistrationForm', {
     extend: 'Ext.form.Panel',
     xtype: 'form-register',
 
+    controller: 'registration',
+
     frame: true,
     title: 'Register',
     bodyPadding: 10,
     scrollable: true,
     width: 355,
     floating: true,
+    autoShow: true,
+    jsonSubmit: true,
 
 
     fieldDefaults: {
@@ -25,9 +29,9 @@ Ext.define('QMS.view.registration.RegistrationForm', {
         },
 
         items: [
-            { allowBlank: false, fieldLabel: 'User ID', name: 'user', emptyText: 'user id' },
-            { allowBlank: false, fieldLabel: 'Password', name: 'pass', emptyText: 'password', inputType: 'password' },
-            { allowBlank: false, fieldLabel: 'Verify', name: 'pass', emptyText: 'password', inputType: 'password' }
+            { allowBlank: false, fieldLabel: 'User ID', name: 'user_id', emptyText: 'user id' },
+            { allowBlank: false, fieldLabel: 'Password', name: 'password', emptyText: 'password', inputType: 'password' },
+            // { allowBlank: false, fieldLabel: 'Verify', name: 'password', emptyText: 'password', inputType: 'password' }
         ]
     }, {
         xtype: 'fieldset',
@@ -41,11 +45,11 @@ Ext.define('QMS.view.registration.RegistrationForm', {
         items: [{
             fieldLabel: 'First Name',
             emptyText: 'First Name',
-            name: 'first'
+            name: 'first_name'
         }, {
             fieldLabel: 'Last Name',
             emptyText: 'Last Name',
-            name: 'last'
+            name: 'last_name'
         }, {
             fieldLabel: 'Company',
             name: 'company'
@@ -57,9 +61,9 @@ Ext.define('QMS.view.registration.RegistrationForm', {
             xtype: 'combobox',
             fieldLabel: 'State',
             name: 'state',
-            // store: {
-            //     type: 'states'
-            // },
+            store: {
+                type: 'states'
+            },
             valueField: 'abbr',
             displayField: 'state',
             typeAhead: true,
@@ -68,7 +72,7 @@ Ext.define('QMS.view.registration.RegistrationForm', {
         }, {
             xtype: 'datefield',
             fieldLabel: 'Date of Birth',
-            name: 'dob',
+            name: 'date_of_birth',
             allowBlank: false,
             maxValue: new Date()
         }]
@@ -77,6 +81,15 @@ Ext.define('QMS.view.registration.RegistrationForm', {
     buttons: [{
         text: 'Register',
         disabled: true,
-        formBind: true
+        formBind: true,
+        listeners: {
+            click: 'onRegistration'
+        }
+    }, {
+        html: 'Already have an account?',
+        text: 'log in',
+        listeners: {
+            click: 'backToLoggin'
+        }
     }]
 });
